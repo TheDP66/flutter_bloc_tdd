@@ -8,12 +8,16 @@ import 'package:flutter_bloc_tdd/domain/usecases/search_movies.dart';
 import 'package:flutter_bloc_tdd/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:flutter_bloc_tdd/presentation/bloc/search_movies/search_movies_bloc.dart';
 import 'package:flutter_bloc_tdd/presentation/bloc/trending_movies/trending_movies_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
 final getIt = GetIt.instance;
 
-void init() {
+void init() async {
+  // env
+  await dotenv.load(fileName: ".env");
+
   // Bloc
   getIt.registerFactory(() => PopularMoviesBloc(getPopularMovies: getIt()));
   getIt.registerFactory(() => TrendingMoviesBloc(getTrendingMovies: getIt()));

@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter_bloc_tdd/core/errors/server_exception.dart';
 import 'package:flutter_bloc_tdd/data/datasources/movie_remote_data_source.dart';
 import 'package:flutter_bloc_tdd/data/models/movie_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
@@ -13,7 +14,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   final http.Client client;
 
   static const BASE_URL = "https://api.themoviedb.org/3";
-  static const API_KEY = "67a4ffb9514fbbba2f4b126e78da5ee3";
+  final API_KEY = dotenv.env["TMDB_KEY"];
 
   String genUrl(url) {
     String apiKeyParams = "api_key=$API_KEY";
