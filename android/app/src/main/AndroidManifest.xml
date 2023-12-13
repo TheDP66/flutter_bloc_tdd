@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_dio">
+    package="com.example.flutter_bloc_tdd">
    <application
-        android:label="flutter_dio"
+        android:label="flutter_bloc_tdd"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,7 @@
-import 'package:flutter_dio/domain/entities/movie.dart';
-import 'package:flutter_dio/domain/repositories/movie_repository.dart';
-import 'package:flutter_dio/domain/usecases/get_tranding_movies.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_bloc_tdd/domain/entities/movie.dart';
+import 'package:flutter_bloc_tdd/domain/repositories/movie_repository.dart';
+import 'package:flutter_bloc_tdd/domain/usecases/get_tranding_movies.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -18,28 +19,30 @@ void main() {
   });
 
   final tMoviesList = [
-    Movie(
-        id: 1,
-        title: "Text Movie 1",
-        overview: "Desc 1",
-        posterPath: "/images1"),
-    Movie(
-        id: 2,
-        title: "Text Movie 2",
-        overview: "Desc 2",
-        posterPath: "/images2"),
+    const Movie(
+      id: 1,
+      title: "Text Movie 1",
+      overview: "Desc 1",
+      posterPath: "/images1",
+    ),
+    const Movie(
+      id: 2,
+      title: "Text Movie 2",
+      overview: "Desc 2",
+      posterPath: "/images2",
+    ),
   ];
 
   test("should get trending movies from the repository", () async {
     // arrange
     when(mockMovieRepository.getTrendingMovies())
-        .thenAnswer((_) async => tMoviesList);
+        .thenAnswer((_) async => Right(tMoviesList));
 
     // act
     final result = await usecase();
 
     // assert
-    expect(result, tMoviesList);
+    expect(result, equals(Right(tMoviesList)));
     verify(mockMovieRepository.getTrendingMovies());
     verifyNoMoreInteractions(mockMovieRepository);
   });

@@ -1,3 +1,5 @@
+import 'package:flutter_bloc_tdd/domain/entities/movie.dart';
+
 class MovieModel {
   MovieModel({
     required this.id,
@@ -17,7 +19,7 @@ class MovieModel {
       id: json['id'],
       title: json['title'],
       overview: json['overview'],
-      posterPath: json['posterPath'],
+      posterPath: json['poster_path'],
     );
   }
 
@@ -27,7 +29,17 @@ class MovieModel {
       'id': id,
       'title': title,
       'overview': overview,
-      'posterPath': posterPath,
+      'poster_path': posterPath,
     };
+  }
+
+  // Convert movie to entity
+  Movie toEntity() {
+    return Movie(
+      id: id,
+      title: title,
+      overview: overview,
+      posterPath: posterPath,
+    );
   }
 }

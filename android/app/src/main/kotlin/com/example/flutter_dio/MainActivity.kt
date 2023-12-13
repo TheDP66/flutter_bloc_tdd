@@ -1,4 +1,4 @@
-package com.example.flutter_dio
+package com.example.flutter_bloc_tdd
 
 import io.flutter.embedding.android.FlutterActivity
 
